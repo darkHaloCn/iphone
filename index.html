@@ -1,0 +1,451 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+        <title>iPhone14 Pro 灵动岛 Demo</title>
+        <meta name="referrer" content="never">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+        <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_666204_kf3f5tzpd8f.css">
+        <link rel="stylesheet" href="css/element.css">
+        <link rel="stylesheet" href="css/font.css">
+        <style>
+        body, html {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            background-color: white;
+        }
+        * {
+            font-family:&#x27;Nunito&#x27;, PingFang SC, Microsoft YaHei;
+            font-weight: 400;
+        }
+        [v-cloak] {
+            visibility: hidden !important;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+        .iPhone {
+            width: 360px;
+            height: 780px;
+            background: #000;
+            border-radius: 35px;
+            border: 4px solid #f3e7cd;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, .1);
+            position: relative;
+        }
+        .iPhone .screen {
+            background-color: black;
+            position: absolute;
+            left: 8px;
+            top:8px;
+            bottom: 8px;
+            right: 8px;
+            border-radius: 25px;
+            background: #000 url(img/bg.jpeg) no-repeat center center;
+            background-size: cover;
+        }
+        .notification {
+            position: absolute;
+            left:0;
+            top:0;
+            right: 0;
+            bottom: 0;
+        }
+        .container {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .panel {
+            background-color: black;
+            position: absolute;
+            width: 75px;
+            height: 15px;
+            border-radius: 20px;
+            transition: all 0.5s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            color: #fff;
+        }
+        .panel * {
+            display: none;
+        }
+        .panel .left, .panel .right {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .show {
+            opacity: 1;
+            border-radius: 20px;
+        }
+        .show * {
+            display: inline-block;
+        }
+        .wechat.show {
+            width: 310px;
+            height: 90px;
+        }
+        .faceid.show {
+            width: 100px;
+            height: 100px;
+            font-size: 12px;
+        }
+        .faceid.show .body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .faceid.show .iconfont {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .wxpay.show {
+            width: 160px;
+            height: 160px;
+            font-size:24px;
+        }
+        .wxpay.show .body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .wxpay.show .iconfont {
+            font-size: 48px;
+            color: #63b359;
+            margin-bottom: 10px;
+        }
+        .wxpay.show .result {
+            font-size: 14px;
+            color: #63b359;
+        }
+        .wxpay.show .money {
+            font-size: 24px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .earthquake.show {
+            width: 300px;
+            height: 100px;
+            font-size:24px;
+        }
+        .earthquake.show .body {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .earthquake.show .iconfont {
+            font-size: 48px;
+            color: yellow;
+            margin-bottom: 10px;
+        }
+        .earthquake.show .right {
+            flex-direction: column!important;
+        }
+        .earthquake.show .time {
+            font-size: 32px;
+            color: yellow;
+        }
+        .earthquake.show .info {
+            font-size: 12px;
+            color: yellow;
+        }
+        .luckybag.show {
+            width: 200px;
+            height: 280px;
+            font-size:24px;
+        }
+        .luckybag.show .body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .luckybag.show .iconfont {
+            font-size: 128px;
+            color: #d94845;
+            margin-bottom: 10px;
+        }
+        .luckybag.show .button {
+            font-size: 24px;
+            margin-top: 10px;
+            background-color: #d94845;
+            color: white;
+            border-radius: 100%;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+        }
+        .normal.show {
+            width: 210px;
+        }
+        .normal.show .body {
+            font-size: 12px;
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            color: white;
+            top: 0;
+            bottom: 0;
+            margin:0!important;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .normal.show * {
+            font-size: 12px;
+            color:white;
+        }
+        .panel .body .left {
+            flex:1;
+        }
+        .panel .appicon {
+            width: 16px;
+            height: 16px;
+            background-color: #29a37d;
+            padding: 1px;
+            border-radius: 3px;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }
+        .panel .icon {
+            width: 60px;
+            height: 60px;
+            overflow: hidden;
+            border-radius: 15px;
+            margin: 10px;
+            position: relative;
+        }
+        .panel img {
+            width: 100%;
+            height: 100%;
+        }
+        .panel .body {
+            margin: 15px 20px;
+            opacity: 0;
+        }
+        .show .body {
+            animation:body-animation .3s;
+            animation-fill-mode:forwards;
+            animation-delay: .5s;
+        }
+        .panel .title {
+            font-size: 20px;
+            color: #fff;
+            display: block;
+        }
+        .panel .message {
+            font-size: 14px;
+            font-weight: 400;
+            margin-top: 10px;
+            display: block;
+            color: #999;
+        }
+        @keyframes body-animation {
+            from {
+                opacity:0;
+            }
+            to {
+                opacity:1;
+            }
+        }
+        .datetime {
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 120px;
+        }
+        .datetime .time {
+            font-size: 64px;
+            font-weight: 300;
+            /*font-family: PingFang SC, Microsoft YaHei;*/
+        }
+        .datetime .date {
+            font-size: 20px;
+            font-weight: 300;
+            /*font-family: PingFang SC, Microsoft YaHei;*/
+        }
+        .footer {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 25px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .footer .app .iconfont {
+            font-size: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: 100%;
+            margin: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, .1);
+        }
+        .footer .space {
+            flex:1;
+        }
+        </style>
+    </head>
+    
+    <body>
+        <div id="app" v-cloak="">
+            <div class="iPhone">
+                <div class="screen">
+                    <div class="datetime">
+                        <div class="time">12:34</div>
+                        <div class="date">壬寅年八月十五</div>
+                    </div>
+                    <div class="notification">
+                        <div class="container">
+                            <div class="panel" :class="panelClass">
+                                <div class="body" v-show="type===1">
+                                    <img class="appicon" src="img/wechat-fill.png">
+                                    <div class="title">darkHalo</div>
+                                    <div class="message">我发现你昨天写了13个BUG...</div>
+                                </div>
+                                <div class="body" v-show="type===2">
+                                    <div class="left"><i class="iconfont icon-icon_qq_fill"></i> 敢爱敢做</div>
+                                    <div class="right">04:38</div>
+                                </div>
+                                <div class="body" v-show="type===3">
+                                    <div class="left"><i class="iconfont icon-airpods"></i> darkHalo's AirPods</div>
+                                    <div class="right">已连接</div>
+                                </div>
+                                <div class="body" v-show="type===4">
+                                    <div class="left"><i class="iconfont icon-icon_airplay"></i> Apple TV</div>
+                                    <div class="right">镜像中</div>
+                                </div>
+                                <div class="body" v-show="type===5"> <i class="iconfont icon-face_id"></i>
+ <span>注视解锁</span>
+
+                                </div>
+                                <div class="body" v-show="type===6"> <i class="iconfont icon-weixinzhifu"></i>
+ <span class="result">支付成功</span>
+ <span class="money">￥128.55</span>
+
+                                </div>
+                                <div class="body" v-show="type===7"> <i class="iconfont icon-redpacket_fill"></i>
+ <span class="button">抢</span>
+
+                                </div>
+                                <div class="body" v-show="type===8"> <i class="left iconfont icon-shijian3"></i>
+
+                                    <div class="right">
+                                        <div class="time">倒计时: 38s</div>
+                                        <div class="info">地震横波即将到达, 请注意安全</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <div class="app"><i class="iconfont icon-flashlight_fill"></i>
+
+                        </div>
+                        <div class="space"></div>
+                        <div class="app"><i class="iconfont icon-camera-fill"></i>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <script src="js/vue-2.6.10.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/element.js"></script>
+    <script src="js/vue-clipboard.min.js"></script>
+    <script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                show: false,
+                type: 1 + parseInt(Math.random() * 6),
+                debug: false
+            }
+        },
+        created() {
+            const that = this
+            setTimeout(function () {
+                that.test()
+            }, 2000)
+        },
+        updated() {},
+        computed: {
+            panelClass: function () {
+                const that = this
+                let panelClass = ""
+                panelClass += that.show ? "show" : ""
+                switch (that.type) {
+                case 1:
+                    panelClass += " wechat"
+                    break
+                case 5:
+                    panelClass += " faceid"
+                    break
+                case 6:
+                    panelClass += " wxpay"
+                    break
+                case 7:
+                    panelClass += " luckybag"
+                    break
+                case 8:
+                    panelClass += " earthquake"
+                    break
+                default:
+                    panelClass += " normal"
+                }
+                return panelClass
+
+            }
+        },
+        methods: {
+            test() {
+                const that = this
+                that.show = true
+                setTimeout(function () {
+                    if (!that.debug) {
+                        if(that.type===8){
+                            that.type = 0
+                        }
+                        that.type++;
+                    }
+                    that.show = false
+                    setTimeout(that.test, 3000 + Math.random() * 7000)
+                }, 3000)
+            }
+        }
+    });
+    </script>
+
+</body></html>
